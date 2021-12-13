@@ -15,25 +15,25 @@ pipeline {
       }
     }
 
-    stage ('OWASP Dependency-Check Vulnerabilities') {
-      steps {
-        withMaven(maven : 'mvn-3.6.3') {
-          sh 'mvn dependency-check:check'
-        }
+//     stage ('OWASP Dependency-Check Vulnerabilities') {
+//       steps {
+//         withMaven(maven : 'mvn-3.6.3') {
+//           sh 'mvn dependency-check:check'
+//         }
 
-        dependencyCheckPublisher pattern: 'target/dependency-check-report.xml'
-      }
-    }
+//         dependencyCheckPublisher pattern: 'target/dependency-check-report.xml'
+//       }
+//     }
 
-    stage('SonarQube analysis') {
-      steps {
-        withSonarQubeEnv(credentialsId: 'sonarqube-secret', installationName: 'sonarqube-server') {
-          withMaven(maven : 'mvn-3.6.3') {
-            sh 'mvn sonar:sonar -Dsonar.dependencyCheck.jsonReportPath=target/dependency-check-report.json -Dsonar.dependencyCheck.xmlReportPath=target/dependency-check-report.xml -Dsonar.dependencyCheck.htmlReportPath=target/dependency-check-report.html'
-          }
-        }
-      }
-    }
+//     stage('SonarQube analysis') {
+//       steps {
+//         withSonarQubeEnv(credentialsId: 'sonarqube-secret', installationName: 'sonarqube-server') {
+//           withMaven(maven : 'mvn-3.6.3') {
+//             sh 'mvn sonar:sonar -Dsonar.dependencyCheck.jsonReportPath=target/dependency-check-report.json -Dsonar.dependencyCheck.xmlReportPath=target/dependency-check-report.xml -Dsonar.dependencyCheck.htmlReportPath=target/dependency-check-report.html'
+//           }
+//         }
+//       }
+//     }
 
     stage('Create and push container') {
       steps {
@@ -45,12 +45,12 @@ pipeline {
       } 
     }
 
-    stage('Anchore analyse') {
-      steps {
-        writeFile file: 'anchore_images', text: 'docker.io/maartensmeets/spring-boot-demo'
-        anchore name: 'anchore_images'
-      }
-    }
+//     stage('Anchore analyse') {
+//       steps {
+//         writeFile file: 'anchore_images', text: 'docker.io/maartensmeets/spring-boot-demo'
+//         anchore name: 'anchore_images'
+//       }
+//     }
 
     stage('Deploy to K8s') {
       steps {

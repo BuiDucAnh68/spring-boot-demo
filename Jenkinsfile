@@ -61,7 +61,7 @@ pipeline {
           } 
         }
     stage('OWASP ZAP'){
-                sh " docker run -t --network Final_Milestone -p 8082:8080 owasp/zap2docker-stable -d buiducanh68/spring-boot-demo"
+                sh "docker run -t --network Final_Milestone -p 8082:8080 owasp/zap2docker-stable -d buiducanh68/spring-boot-demo"
     }
   }
 }

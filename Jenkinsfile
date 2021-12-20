@@ -62,7 +62,7 @@ pipeline {
         }
     stage('OWASP ZAP'){
       steps{
-                sh "docker run -t owasp/zap2docker-stable zap-baseline.py -t http://locahost:8082/zap -d --name milestone buiducanh68/spring-boot-demo  || true"
+                sh "docker run -i owasp/zap2docker-stable zap-baseline.py -t 'http://locahost:8080/rest/demo' -r baseline-report.html -l PASS"
     }
     }
   }

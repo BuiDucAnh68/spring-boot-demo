@@ -61,7 +61,7 @@ pipeline {
           } 
         }
     stage('OWASP ZAP'){
-                sh "docker run -t owasp/zap2docker-stable http://localhost:8082 --network Final_Milestone -d buiducanh68/spring-boot-demo"
+                sh "docker run -t owasp/zap2docker-stable zap-baseline.py -t http://locahost:8082/zap -d --name milestone buiducanh68/spring-boot-demo  || true"
     }
   }
 }

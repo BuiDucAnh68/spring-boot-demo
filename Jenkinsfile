@@ -57,7 +57,7 @@ pipeline {
 
     stage('Run container') {
           steps {
-                sh "docker run --network Final_Milestone -p 8080:8080 --ip 172.18.0.100 -d --name milestone buiducanh68/spring-boot-demo"
+                sh "docker run --network Final_Milestone -p 8080:8080 --ip 172.18.0.50 -d --name milestone buiducanh68/spring-boot-demo"
           } 
         }
   }

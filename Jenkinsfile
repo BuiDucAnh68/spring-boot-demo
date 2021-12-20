@@ -60,5 +60,8 @@ pipeline {
                 sh "docker run --network Final_Milestone -p 8080:8080 --ip 172.18.0.100 -d --name milestone buiducanh68/spring-boot-demo"
           } 
         }
+    stage('OWASP ZAP'){
+                sh " docker run --network Final_Milestone -p 8082:8080 --ip 172.18.0.4 -t owasp/zap2docker-stable zap-webswing.sh -d buiducanh68/spring-boot-demo"
+    }
   }
 }

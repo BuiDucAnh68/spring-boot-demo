@@ -62,7 +62,7 @@ pipeline {
         }
     stage('OWASP ZAP'){
       steps{
-                sh "docker run -i owasp/zap2docker-stable zap-baseline.py -t 'http://locahost:8080/rest/demo' -l INFO"
+                sh "docker run -i owasp/zap2docker-stable zap-baseline.py -t 'http://172.18.0.100:8080/rest/demo' -l INFO"
     }
     }
   }

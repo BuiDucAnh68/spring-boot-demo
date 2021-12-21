@@ -27,7 +27,7 @@ class DemoRestControllerIT {
 
     @Test
     public void testDemoRestController() throws Exception {
-        MvcResult result = mockMvc.perform(MockMvcRequestBuilders.get("/rest/demo")).andExpect(status().isOk()).andExpect(content().string("Hi there")).andReturn();
+        MvcResult result = mockMvc.perform(MockMvcRequestBuilders.get("/rest/demo")).andExpect(status().isOk()).andExpect(content().string("Hi everyone this is group 9's demo")).andReturn();
         String resultDOW = result.getResponse().getContentAsString();
         assertNotNull(resultDOW);
     }
